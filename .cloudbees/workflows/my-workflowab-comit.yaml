@@ -1,0 +1,22 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My workflowab comit
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  my-job-1:
+    outputs:
+      output1: ${{ steps.step1.outputs.greeting }}
+      output2: ${{ steps.step2.outputs.greeting }}
+    steps:
+      - name: My first step
+        uses: docker://alpine:3.18
+        id: step1
+        run: echo "hello there" > "$CLOUDBEES_OUTPUTS/greeting"
+      - name: My second step
+        uses: docker://alpine:3.18
+        id: step2
+        run: echo "from the hive" > "$CLOUDBEES_OUTPUTS/greeting"
