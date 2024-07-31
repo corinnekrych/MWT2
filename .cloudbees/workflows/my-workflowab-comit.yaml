@@ -3,6 +3,10 @@ kind: workflow
 name: My workflowab comit
 on:
   workflow_dispatch:
+    inputs:
+      param1:
+        type: string
+        default: defautlparam1
   push:
     branches:
       - main
